@@ -1,0 +1,92 @@
+// ==============================
+// Scroll Reveal Animation
+// ==============================
+const animatedElements = document.querySelectorAll(
+  ".animate-up, .animate-fade"
+);
+
+function revealOnScroll() {
+  animatedElements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 80) {
+      el.classList.add("animate-show");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+
+
+// ==============================
+// Burger Menu Toggle
+// ==============================
+const burger = document.querySelector(".burger");
+const navLinks = document.querySelector(".nav-links");
+
+burger.addEventListener("click", () => {
+  navLinks.classList.toggle("show");
+});
+
+// ==============================
+// Education Tabs
+// ==============================
+const tabs = document.querySelectorAll(".edu-tab");
+const panels = document.querySelectorAll(".edu-panel");
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    tabs.forEach(t => t.classList.remove("active"));
+    panels.forEach(p => p.classList.remove("active"));
+
+    tab.classList.add("active");
+    document.getElementById(tab.dataset.tab).classList.add("active");
+  });
+});
+
+
+// ==============================
+// Dark Mode Toggle
+// ==============================
+const toggle = document.getElementById("darkModeToggle");
+const icon = document.getElementById("themeIcon");
+
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  if (document.body.classList.contains("dark")) {
+    icon.src = "images/icon/moon.png";
+  } else {
+    icon.src = "images/icon/sun.png";
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const bentoBoxes = document.querySelectorAll(".bento-box");
+
+  // Fade-in animation
+  bentoBoxes.forEach((box, index) => {
+    setTimeout(() => {
+      box.classList.add("animate-show");
+    }, index * 150);
+  });
+
+  // Optional 3D tilt on hover
+  bentoBoxes.forEach(box => {
+    box.addEventListener('mousemove', e => {
+      const rect = box.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * 5; // max 5deg
+      const rotateY = ((x - centerX) / centerX) * -5;
+      box.style.transform = `scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    box.addEventListener('mouseleave', () => {
+      box.style.transform = "scale(1) rotateX(0) rotateY(0)";
+    });
+  });
+});
+

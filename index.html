@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <link rel="shortcut icon" href="images/icon/moon.png" type="image/x-icon">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ==============================
+       NAVIGATION
+  =============================== -->
+  <nav class="navbar">
+    <div class="logo">myPortfolio</div>
+
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#education">education</a></li>
+      <li><a href="#ojt">ojt</a></li>
+      <li><a href="#projects">projects</a></li>
+
+      <!-- Dark Mode Toggle -->
+      <li class="theme-toggle">
+        <button id="darkModeToggle" aria-label="Toggle dark mode">
+          <img
+            id="themeIcon"
+            src="images/icon/sun.png"
+            alt="Theme icon"
+          />
+        </button>
+      </li>
+    </ul>
+
+    <!-- Burger Menu -->
+    <div class="burger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+<!-- ==============================
+     HERO SECTION
+=============================== -->
+<section class="section white" id="hero">
+  <div class="center">
+    <h1 class="title animate-up">
+      Hi, I'm <span>Charles</span>
+    </h1>
+    <p class="subtitle animate-up">
+      Frontend / Backend Developer
+    </p>
+
+    <!-- Download Resume Button (shows only in dark mode) -->
+    <a href="resume.pdf" download class="btn-resume" id="resumeBtn">
+              <img src="images/icon/pdf.png" alt="Download Icon" class="btn-icon">
+      Download Resume
+
+    </a>
+  </div>
+</section>
+
+  <!-- ==============================
+     EDUCATION SECTION
+=============================== -->
+<section class="section white" id="education">
+  <div class="education-container">
+
+    <h2 class="section-title animate-up">Education</h2>
+
+    <!-- Tabs -->
+    <div class="edu-tabs animate-up">
+      <button class="edu-tab active" data-tab="college">College</button>
+      <button class="edu-tab" data-tab="shs">Senior High</button>
+      <button class="edu-tab" data-tab="middle">Highschool</button>
+      <button class="edu-tab" data-tab="elementary">Elementary</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="edu-content">
+
+      <!-- College -->
+      <div class="edu-panel active" id="college">
+        <h3>Bachelor of Science in Information Technology</h3>
+        <span class="school">City College of Calamba Graduated: June 2025</span>
+        <span class="year">2021 - 2025</span>
+        <p>
+Studied  software / Web development, database management,
+networking, and web technologies Completed a capstone
+project focused on real-world IT solutions in Casa Verde De
+Banadero
+
+        </p>
+      </div>
+
+      <!-- Senior High -->
+      <div class="edu-panel" id="shs">
+        <h3>Senior High School – Information and Communications Technology ICT Strand</h3>
+        <span class="school">City Global College Graduated: May 2021</span>
+        <span class="year">2020 - 2021</span>
+        <p>
+          Learned computer fundamentals, programming basics, and
+hardware troubleshooting. Experienced with Microsoft Excel
+(data entry, formulas, formatting)
+        </p>
+      </div>
+
+      <!-- High School -->
+      <div class="edu-panel" id="middle">
+        <h3>Highschool</h3>
+        <span class="school">Lecheria National Highschool Graduated: March 2020</span>
+        <span class="year">2014 – 2020</span>
+        <p>
+  Learned basic ICT skills, including assembling and disassembling computers, troubleshooting hardware issues, and maintaining PCs.
+        </p>
+      </div>
+
+      <!-- Elementary -->
+      <div class="edu-panel" id="elementary">
+        <h3>Elementary School</h3>
+        <span class="school">Central 2 Graduated: March 2014 </span>
+        <span class="year">2007 – 2014</span>
+        <p>
+          Completed basic education, laying the groundwork for future learning.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section bento-section">
+  <div class="bento-wrapper">
+
+    <div class="bento-left">
+      <a href="https://example.com/project-main" class="bento-box tall bento-title">
+        <h3>Projects <br>Andrei <br>Ignacio</h3>
+      </a>
+
+      <a href="https://example.com/project1" class="bento-box small">
+        <img src="images/bento/sample.jpg" alt="Project 1">
+      </a>
+    </div>
+
+    <div class="bento-center">
+      <a href="https://example.com/project2" class="bento-box wide">
+        <img src="images/bento/sample2.jpg" alt="Project 2">
+      </a>
+
+      <a href="https://example.com/project3" class="bento-box wide highlight">
+        <img src="images/bento/sample5.png" alt="Project 3">
+      </a>
+    </div>
+
+    <div class="bento-right">
+      <a href="https://example.com/project4" class="bento-box square">
+        <img src="images/bento/sample6.png" alt="Project 4">
+      </a>
+
+      <a href="https://example.com/project5" class="bento-box wide">
+        <img src="images/bento/sample3.jpg" alt="Project 5">
+      </a>
+    </div>
+
+    <div class="bento-portrait">
+      <a href="https://example.com/project6" class="bento-box portrait">
+        <img src="images/bento/sample4.gif" alt="Project 6">
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section ojt-section">
+  <h2 class="section-title">OJT & Work</h2>
+
+  <div class="ojt-wrapper">
+    <!-- Example Work Card -->
+    <a href="https://" class="ojt-card">
+      <div class="ojt-logo">
+        <img src="images/ojt/company.png" alt="Company 1">
+      </div>
+      <div class="ojt-info">
+        <h3>Software Intern</h3>
+        <p class="company">Company 1</p>
+        <p class="year">Jan 2025 – June 2025</p>
+        <p class="description">Worked on front-end development, creating interactive UI components for the main website.</p>
+      </div>
+    </a>
+
+    <a href="https://" class="ojt-card">
+      <div class="ojt-logo">
+        <img src="images/ojt/company1.png" alt="Company 2">
+      </div>
+      <div class="ojt-info">
+        <h3>Junior Developer</h3>
+        <p class="company">Company 2</p>
+        <p class="year">July 2025 – Present</p>
+        <p class="description">Maintained web applications and optimized performance for multiple projects.</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+
+  <!-- ==============================
+       FOOTER
+  =============================== -->
+  <footer class="footer">
+    © 2026 Charles (TechDummvry) — All Rights Reserved
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
