@@ -79,7 +79,7 @@ body {
    NAVIGATION BAR
 ================================================== */
 .navbar {
-  position:fixed;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 10;
@@ -187,6 +187,70 @@ body.dark .btn-resume {
   transform: scale(1.05) rotate(360deg);
 }
 
+/* ==================================================
+   Typing  Animate
+================================================== */
+#typing-text::after {
+  content: "|";
+  margin-left: 5px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+#hero {
+  position: relative;
+  overflow: hidden;
+  margin-top: var(--navbar-height);
+}
+
+.hero-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.hero-wave svg {
+  display: block;
+  width: 100%;
+  height: 120px;
+}
+.base-wave {
+  z-index: 1;
+  animation: waveFloatBase 8s ease-in-out infinite;
+}
+
+.overlay-wave {
+  z-index: 2;
+  opacity: 0.8;
+  animation: waveFloatOverlay 5s ease-in-out infinite;
+}
+@keyframes waveFloatBase {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes waveFloatOverlay {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(14px);
+  }
+}
+
+
+
 
 
 /* ==================================================
@@ -218,6 +282,8 @@ body.dark .btn-resume {
   margin-top: 10px;
   font-size: var(--fs-subtitle);
   opacity: 0.7;
+   line-height: 2; 
+  letter-spacing: 0.15em;
 }
 
 h1 span {
@@ -274,7 +340,7 @@ h1 span {
    EDUCATION CONTENT CONTAINER
 ================================================== */
 .edu-content {
-  height: 300px;         /* fixed height for all panels */
+  min-height: 200px;         /* fixed height for all panels */
   position: relative;
   overflow: hidden;      /* hide non-active panels */
 }
@@ -348,6 +414,58 @@ h1 span {
     transform: translateY(0);
   }
 }
+
+/* Container */
+.education-logos {
+  width: 100%;
+  padding: 30px 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Slider wrapper */
+.logos-slider {
+  display: flex;
+  gap: 40px; /* spacing between logos */
+  animation: slide-left 15s linear infinite;
+}
+
+/* Individual logos */
+.logos-slider img {
+  max-height: 90px; /* control size */
+  transition: transform 0.3s;
+}
+
+.logos-slider img:hover {
+  transform: scale(1.1);
+}
+
+/* Simple horizontal scroll animation */
+@keyframes slide-left {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-20%); }
+  100% { transform: translateX(0); }
+}
+
+/* Optional: fade-in upward animation */
+.animate-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
 
 
 /* ==================================================
@@ -501,112 +619,9 @@ h1 span {
   color: transparent;
 }
 
-
 /* ==================================================
-   OJT & WORK SECTION
+   CONTACT
 ================================================== */
-.ojt-section {
-  padding: 80px var(--container-padding);
-  background: var(--color-bg-main);
-  text-align: center;
-}
-
-.ojt-section .section-title {
-  font-size: var(--fs-section);
-  font-weight: var(--fw-bold);
-  margin-bottom: 50px;
-  position: relative;
-  padding-right: 20px;
-}
-
-/* Wrapper for all work cards */
-.ojt-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
-}
-
-/* Individual work card */
-.ojt-card {
-  background: var(--color-text-main);
-  color: var(--color-bg-main);
-  border-radius: 18px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  width: 340px;
-  text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Hover effect */
-.ojt-card:hover {
-  transform: scale(1.05) rotateZ(1deg);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-}
-
-/* Logo area */
-.ojt-logo {
-  width: 100%;
-  height: 250px;
-  overflow: hidden;
-  background: var(--color-bg-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ojt-logo img {
-  max-width: 80%;
-  max-height: 80%;
-  object-fit: contain;
-}
-
-/* Info area */
-.ojt-info {
-  padding: 20px;
-  text-align: left;
-}
-
-.ojt-info h3 {
-  font-size: 1.3rem;
-  font-weight: var(--fw-bold);
-  margin-bottom: 5px;
-  color: var(--color-text-main);
-}
-
-.ojt-info .company {
-  font-weight: var(--fw-medium);
-  color: var(--color-bg-secondary);
-}
-
-.ojt-info .year {
-  font-size: 0.9rem;
-  opacity: 0.7;
-  margin-bottom: 10px;
-}
-
-.ojt-info .description {
-  font-size: 0.95rem;
-  color: var(--color-text-muted);
-  line-height: 1.5;
-}
-
-/* ==================================================
-   RESPONSIVE
-================================================== */
-@media (max-width: 900px) {
-  .ojt-wrapper {
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-  }
-
-  .ojt-card {
-    width: 90%;
-  }
-}
 
 
 /* ==================================================
@@ -614,7 +629,7 @@ h1 span {
 ================================================== */
 @media (max-width: 500px) {
   .bento-section {
-    padding: 50px 5%;
+    padding: 30px 5%;
   }
 }
 
@@ -641,7 +656,7 @@ h1 span {
 ================================================== */
 .footer {
   text-align: end;
-  padding: 20px;
+  padding: 10px;
 }
 
 
