@@ -30,6 +30,32 @@
   --container-padding: 10%;
 }
 
+/* loader */
+/* Loader Styles */
+.loader {
+    border: 8px solid var(--color-bg-secondary-active);
+    border-top: 15px solid var(--color-bg-secondary);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -20px;
+    margin-top: -20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hide content initially */
+.hidden {
+    display: none;
+}
+
 
 /* ==================================================
    FONT FACE
