@@ -133,3 +133,17 @@ const texts = [
   }
 
   typeEffect();
+
+  const modal = document.getElementById("aboutModal");
+const btn = document.getElementById("aboutBtn");
+
+btn.addEventListener("click", (e) => {
+  e.preventDefault();
+  modal.classList.add("show");
+});
+
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.classList.remove("show");
+  }
+});
