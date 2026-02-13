@@ -61,35 +61,6 @@ toggle.addEventListener("click", () => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const bentoBoxes = document.querySelectorAll(".bento-box");
-
-  // Fade-in animation
-  bentoBoxes.forEach((box, index) => {
-    setTimeout(() => {
-      box.classList.add("animate-show");
-    }, index * 150);
-  });
-
-  // Optional 3D tilt on hover
-  bentoBoxes.forEach(box => {
-    box.addEventListener('mousemove', e => {
-      const rect = box.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * 5; // max 5deg
-      const rotateY = ((x - centerX) / centerX) * -5;
-      box.style.transform = `scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
-
-    box.addEventListener('mouseleave', () => {
-      box.style.transform = "scale(1) rotateX(0) rotateY(0)";
-    });
-  });
-});
-
 const texts = [
     "Fresh Graduate",
     "Frontend Developer",
@@ -165,3 +136,4 @@ document.addEventListener("DOMContentLoaded", () => {
         content.style.display = "block";
     }
 });
+

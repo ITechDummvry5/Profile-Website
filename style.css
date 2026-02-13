@@ -64,7 +64,7 @@
   font-family: 'QurovaDEMO';
   src: url('resources/font/QurovaDEMO-Bold-BF67a5c637eed62.otf')
     format('opentype');
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -136,7 +136,6 @@ body {
   backdrop-filter: blur(10px);
 }
 
-
 /* ==================================================
    LOGO
 ================================================== */
@@ -190,42 +189,74 @@ body {
 
 
 /* ==================================================
-   HERO RESUME BUTTON
+   HERO BUTTONS
 ================================================== */
-.btn-resume {
-  display: none !important; /* hidden by default */
 
+/* Hero Buttons Container */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
   margin-top: 20px;
-  padding: 10px 20px;
+}
 
+/* Base style for all hero buttons (hidden by default, show in dark mode) */
+.hero-buttons a {
   display: none;
+  padding: 10px 20px;        
   align-items: center;
   gap: 10px;
 
-  background-color: var(--color-bg-secondary);
-  color: var(--color-bg-main);
-
   font-weight: var(--fw-bold);
   text-decoration: none;
-  border-radius: 5px;
-
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  border-radius: 5px;        
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Show only in dark mode */
-body.dark .btn-resume {
+/* Resume Button */
+.btn-resume {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-bg-main);
+  border: none;
+}
+
+/* GitHub Button */
+.btn-github {
+  border: 2.5px solid var(--color-bg-secondary);
+  background-color: transparent;               
+  color: var(--color-bg-secondary);
+}
+
+/* GitHub icon background */
+.btn-github .btn-icon {
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-bg-secondary-active); /* 25% white */
+  border-radius: 4px;                           
+  padding: 2px;                                 
+}
+
+/* Show buttons only in dark mode */
+body.dark .btn-resume,
+body.dark .btn-github {
   display: inline-flex !important;
 }
 
-/* Hover effect */
-.btn-resume:hover {
+/* Hover effects for both buttons */
+.btn-resume:hover,
+.btn-github:hover {
   transform: scale(1.05);
   opacity: 0.9;
-
-  color: var(--color-text-active);
   background-color: var(--color-bg-secondary-active);
+  color: var(--color-text-active);
+  border: none;
 }
 
+/* GitHub icon hover background */
+.btn-github:hover .btn-icon {
+  background-color: #fff;
+}
 
 /* ==================================================
    BUTTON ICON
@@ -274,6 +305,15 @@ body.dark .btn-resume {
   overflow: hidden;
   margin-top: var(--navbar-height);
 }
+
+#hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center;     /* horizontal center */
+  text-align: center;
+}
+
 
 .hero-wave {
   position: absolute;
@@ -335,14 +375,14 @@ body.dark .btn-resume {
    SECTIONS
 ================================================== */
 .section {
+  min-height: calc(100vh - var(--navbar-height)); /* full height if content is smaller, expands if content is taller */
   width: 100%;
-  height: calc(100vh - var(--navbar-height));
   padding: 0 var(--container-padding);
 
   display: flex;
+  flex-direction: column;  /* allows stacking content vertically */
   align-items: center;
-  justify-content: center;
-
+  justify-content: flex-start; /* start from top */
   scroll-snap-align: start;
 }
 
@@ -436,7 +476,11 @@ h1 span {
   margin: 0 auto;   /* center the container */
   padding: 0 20px;  /* optional side padding */
 }
-
+#education{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* ==================================================
    EDUCATION PANELS
@@ -551,157 +595,6 @@ h1 span {
     transform: translateY(0);
   }
 }
-/* ==================================================
-   BENTO SECTION (STABLE HEIGHT – FLEX ONLY)
-================================================== */
-.bento-section {
-  background: var(--color-text-main);
-  padding: 400px var(--container-padding);
-  position: relative; /* needed for absolute elements like section title */
-}
-
-.bento-wrapper {
-  display: flex;
-  gap: 20px;
-  height: 520px; /* desktop fixed height */
-  align-items: stretch;
-  overflow: hidden; /* prevent overflow */
-}
-
-/* ==================================================
-   COLUMNS
-================================================== */
-.bento-left,
-.bento-center,
-.bento-right,
-.bento-portrait {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* Adjusted widths */
-.bento-left { width: 20%; }
-.bento-center { width: 40%; }
-.bento-right { width: 25%; }
-.bento-portrait { width: 15%; }
-
-/* ==================================================
-   BENTO BOX BASE
-================================================== */
-.bento-box {
-  background: var(--color-bg-main);
-  border-radius: 18px;
-  overflow: hidden;
-  position: relative;
-  flex: 1;
-  min-height: 0;
-  cursor: pointer; /* interactive */
-
-  /* Fade-in initial state */
-  opacity: 0;
-  transform: translateY(20px) scale(0.95);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease;
-}
-
-/* ==================================================
-   HOVER EFFECT
-================================================== */
-.bento-box:hover {
-  transform: scale(1.05) rotateZ(1deg);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  z-index: 5;
-}
-
-/* ==================================================
-   IMAGE BEHAVIOR
-================================================== */
-.bento-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* ==================================================
-   BENTO TITLE BOX
-================================================== */
-.bento-title {
-  background: linear-gradient(135deg, #ff6b00, #ff4500);
-  color: #910000;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Glow / grain overlay */
-.bento-title::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.35), transparent 60%);
-  opacity: 0.6;
-}
-
-/* Optional subtitle */
-.bento-title::after {
-  content: "Selected work";
-  position: absolute;
-  bottom: 18px;
-  left: 20px;
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  opacity: 0.8;
-}
-
-/* Title text */
-.bento-title h3 {
-  position: relative;
-  z-index: 1;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
-  text-transform: uppercase;
-  padding: 0.1em 0.05em;
-  font-family: 'QurovaDEMO', sans-serif;
-}
-
-/* ==================================================
-   ANIMATIONS: fade-in on page load
-================================================== */
-.bento-box.animate-show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* ==================================================
-   OPTIONAL: SECTION TITLE (H2)
-================================================== */
-.bento-section-title {
-  position: absolute;
-  top: -10px; /* adjust vertical offset */
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: var(--fs-section);
-  font-weight: var(--fw-bold);
-  text-transform: uppercase;
-  z-index: 10;
-  text-align: center;
-
-  /* Vertical split text color using gradient */
-  background: linear-gradient(
-    to bottom,
-    var(--color-text-active) 50%, /* top half white */
-    var(--color-text-main) 50%    /* bottom half black */
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
-
-
 /* ==================================================
    CONTACT
 ================================================== */
@@ -858,17 +751,6 @@ body.dark .info-item img {
   object-fit: contain;
 }
 
-
-
-/* ==================================================
-   ADDITIONAL MOBILE FIXES
-================================================== */
-@media (max-width: 500px) {
-  .bento-section {
-    padding: 30px 5%;
-  }
-}
-
 /* ==================================================
    ANIMATIONS
 ================================================== */
@@ -888,9 +770,171 @@ body.dark .info-item img {
    FOOTER
 ================================================== */
 .footer {
-  text-align: end;
-  padding: 10px;
+  background: var(--color-bg-main);
+  color: var(--color-text-main);
+  padding: 60px 10%;
+  border-top: 2px solid var(--color-bg-secondary);
+  font-family: 'Poppins', sans-serif;
 }
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* ===========================
+   Logo & Overlapping Logos
+=========================== */
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.logo-group img {
+  width: 80px; /* all logos same size */
+  height: auto;
+  object-fit: contain;
+  margin-left: -15px; /* overlap */
+  border: 2px solid transparent; /* no white border */
+  border-radius: 8px;
+  transition: transform 0.3s ease, z-index 0.3s;
+  z-index: 1;
+}
+
+.logo-group img:first-child {
+  margin-left: 0;  /* keep first logo aligned */
+  width: 80px;     /* same as others */
+  z-index: 2;      /* optional */
+}
+
+
+.logo-group img:hover {
+  transform: scale(1.2);
+  z-index: 3; /* bring hovered logo forward */
+}
+
+.footer-logo p {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* ===========================
+   Quick Links
+=========================== */
+.footer-links h4,
+.footer-subscribe h4 {
+  font-size: 1.2rem;
+  font-weight: var(--fw-bold);
+  margin-bottom: 15px;
+}
+
+.footer-links ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links ul li a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+  color: var(--color-bg-secondary);
+}
+
+/* ===========================
+   Subscribe Form
+=========================== */
+.footer-subscribe p {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  opacity: 0.7;
+}
+
+.subscribe-form {
+  display: flex;
+  gap: 10px;
+}
+
+.subscribe-form input {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.2);
+  font-size: 0.9rem;
+}
+
+.subscribe-form button {
+  padding: 10px 20px;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-bg-main);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: var(--fw-bold);
+  transition: background 0.3s;
+}
+
+.subscribe-form button:hover {
+  background-color: var(--color-bg-secondary-active);
+}
+
+/* ===========================
+   Footer Bottom Text
+=========================== */
+.footer-bottom {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.6;
+} 
+/* ===========================
+   Responsive
+=========================== */
+@media (max-width: 850px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-links,
+  .footer-subscribe {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .logo-group img {
+    margin-left: -10px; /* smaller overlap on mobile */
+    width: 40px;
+  }
+
+  .logo-group img:first-child {
+    width: 60px;
+  }
+
+  .subscribe-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .subscribe-form button {
+    width: 100%;
+  }
+}
+
 
 /* ==================================================
    DARK MODE
@@ -943,34 +987,6 @@ body.dark {
   font-size: var(--fs-section);
   font-weight: var(--fw-bold);
   font-family: 'QurovaDEMO', sans-serif;
-}
-
-/* Bento layout adjustments for smaller screens */
-@media (max-width: 900px) {
-  .bento-wrapper {
-    flex-direction: column;
-    height: auto; /* let content flow naturally */
-    gap: 15px;    /* smaller gap on mobile */
-  }
-
-  .bento-left,
-  .bento-center,
-  .bento-right,
-  .bento-portrait {
-    width: 100%; /* full width columns */
-  }
-
-  /* Bento boxes scaling */
-  .bento-box {
-    flex: none;
-    height: auto;
-    max-height: 40px; /* limit height */
-  }
-
-  .bento-box img {
-    height: 100%;
-    object-fit: cover; /* maintain aspect ratio */
-  }
 }
 
 .modal {
@@ -1091,8 +1107,6 @@ body.dark {
     opacity: 0;
   }
 }
-
-
 /* Right skills */
 .modal-right {
   flex:1;
@@ -1127,3 +1141,5 @@ body.dark {
   font-size: 0.85rem;
   font-weight: bold;
 }
+
+
