@@ -244,32 +244,34 @@ body {
   display: none;
 }
 
-/* MOBILE RESPONSIVE */
 @media (max-width: 768px) {
-  
-  /* Bento grid becomes single column */
+  /* Bento grid auto-fill, but boxes default to wide size */
   .bento {
-    grid-template-columns: 1fr; /* 1 column */
-    grid-auto-rows: auto;       /* automatic row height */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-auto-rows: 180px;
     gap: 10px;
   }
 
-  /* Boxes take full width */
+  /* Make all boxes behave like 'wide' */
   .box {
-    border-radius: 15px;
-    padding: 10px;
+    grid-column: span 2 !important;  /* force wide size */
   }
 
-  /* Images shrink to fit */
+  /* Shrink padding & border-radius for mobile */
+  .box {
+    padding: 10px;
+    border-radius: 15px;
+  }
+
+  /* Adjust images */
   .image-box img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
   }
 
-  /* Text-only boxes default size */
+  /* Text-only boxes */
   .text-only, .text-onlys {
-    grid-column: span 1;
     padding: 15px;
   }
 
@@ -277,17 +279,12 @@ body {
   .text-only h1, .text-onlys h1 {
     font-size: 24px;
   }
-  
+
   .text-only h2, .text-onlys h2 {
     font-size: 18px;
   }
-  
+
   .text-only p, .text-onlys p, .github-link span, .back-link {
     font-size: 12px;
-  }
-
-  /* Reduce box shadows / animations if needed */
-  .text-only, .text-onlys {
-    animation: none; /* optional: remove heavy gradient animation for small screens */
   }
 }
